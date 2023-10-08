@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Receiver</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Received Messages:</h1>
+    <div id="message-container">
+        <!-- Messages will be displayed here dynamically -->
+    </div>
+
+    <script>
+        // JavaScript code to update messages dynamically
+        function addMessage(message) {
+            const messageContainer = document.getElementById("message-container");
+            const messageElement = document.createElement("p");
+            messageElement.textContent = message;
+            messageContainer.appendChild(messageElement);
+        }
+
+        // Establish a WebSocket connection
+        const socket = new WebSocket("wss://deepak2516.github.io/please/"); // WebSocket server URL
+
+        // Listen for incoming messages
+        socket.onmessage = function (event) {
+            const message = event.data;
+            addMessage(message);
+        };
+    </script>
+</body>
+</html>
